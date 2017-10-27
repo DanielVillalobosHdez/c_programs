@@ -4,7 +4,7 @@
 
 int main(){
 
-  printf(Hola, mundo\n);//llamada a una función
+  printf("Hola mundo\n");//llamada a una función
 
   return EXIT_SUCCESS;
 }
