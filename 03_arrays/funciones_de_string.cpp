@@ -21,6 +21,7 @@ int main(){
   frase[2] == "v"; // '==' relacional //notación de matrices
   *d == "v"; // notación de punteros
   *(d+2) == "m"; // d + 2 char(byte), el 2 esta en aritmetica de punteros
+  *d + 2 == "x"
 
   printf("d ocupa %lu bytes. \n", sizeof(d));
 
