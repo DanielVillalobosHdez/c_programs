@@ -15,13 +15,13 @@ int main(){
   scanf(" %i", &amarillo);
 
   if (rojo == 0 && azul == 0 && amarillo == 0)
-      printf("ves blanco\n");
+    printf("ves blanco\n");
     else if (rojo == 1 && azul == 0 && amarillo == 0)
       printf("ves rojo \n");
       else if (rojo == 0 && azul == 1 && amarillo == 0)
-          printf("ves azul \n");
+        printf("ves azul \n");
         else if (rojo == 0 && azul == 0 && amarillo == 1)
-            printf("ves amarillo \n");
+          printf("ves amarillo \n");
           else if (rojo == 1 && azul == 1 && amarillo == 0)
             printf("ves morado\n");
             else if (rojo == 1 && azul == 0 && amarillo == 1)
