@@ -9,10 +9,10 @@ int pinta_cuadrado(int l){
         for(int fila=0; fila<l; fila++){
             for(int col_cua=0; col_cua<l; col_cua++)
                 for(int columna=0; columna<l; columna++)
-                    if(es_impar(fila_cuadrado, col_cua))
-                        printf(" ");
-                    else
-                        printf("*");
+                    printf("%c",
+                            es_impar(fila_cuadrado, col_cua) ?
+                            ' ' : '*'
+                            );
     printf("\n");
     }
 }
