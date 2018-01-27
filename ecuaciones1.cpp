@@ -42,7 +42,7 @@ void datos(double sistema[N-1][N]){
 }
 
 int main(){
-	double sistema [N-1][N], t, t1, fila[N-1][N];
+	double sistema [N-1][N], t;
 
 
 
@@ -63,7 +63,10 @@ int main(){
 	tabla(sistema);
 
 	for(int col=0; col<N; col++){
-		sistema[Z+1][col] = sistema[Z+1][col] + sistema[Z][col];
+		if(sistema[Z+1][col]>0.000000001)
+			sistema[Z+1][col] = sistema[Z+1][col] - sistema[Z][col];
+		else
+			sistema[Z+1][col] = sistema[Z+1][col] + sistema[Z][col];
 	}
 	tabla(sistema);
 
