@@ -15,7 +15,11 @@ int main(){
     }, resultado[N-1][N];
 
     resultado[0][0] = (matriz1[0][0] * matriz2[0][0]) + (matriz1[0][1] * matriz2[1][0]);
-    printf("%2.2lf", resultado[0][0]);
+    printf("%2.2lf\n", resultado[0][0]);
+
+    for(int columna=0; columna<N-1; columna++){
+        for 
+    }
 
     return EXIT_SUCCESS;
 }
