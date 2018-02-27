@@ -8,8 +8,7 @@ int main(){
 	char *algo = frase;
 	char *salto = frase;
 	char vocal;
-		
-	system("clear");
+
 	while ( *salto != '\0'){
 		printf("%c", *salto);
 		salto++;
