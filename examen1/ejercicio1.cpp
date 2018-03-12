@@ -1,30 +1,50 @@
-#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
-#define N 0x100
+#define N 0X100
 
 int main(){
+    char **puntero;
+    char palabra[N];
+    int tamano;
+    int palabras;
 
-  char palabra[N];
-  char *puntero = NULL;
-  int tamano;
-  int palabras;
-
-  printf("cuantas palabras quieres: ");
-  scanf(" %i", &palabras);
-
-  for (int i = 0; i < palabras; i++){
-      printf("palabra %i: ", i);
-      scanf(" %s" palabra);
-
-      tamano = strlen(palabra);
-      puntero =(char *) malloc ((tamano+1)* sizeof(char));
-  }
-  
-  for (int r = 0; r < palabras; r++)
-      printf(" %s\n", palabra);
+    printf("Cuantas palabras: ");
+    scanf(" %i", &palabras);
 
 
-  return EXIT_SUCCESS;
+    for(int i = 0; i = palabras; i++){
+        printf("palabra: ");
+        scanf(" %[^\n]", palabra);
+        tamano = strlen(palabra);
+
+        if(i = 0){
+
+            puntero = (char **) malloc(sizeof(char *));
+
+            *(puntero+i) = (char *) malloc ((tamano+1) * sizeof(char));
+            strncpy(*puntero, palabra, tamano+1);
+            *puntero[tamano+1] = '\0';
+            printf(" %s\n", *puntero);
+
+        } else {
+
+            puntero = (char **) realloc (puntero, (i+1)*sizeof(char *));
+            *(puntero+i) = (char *) malloc (tamano+1);
+            strncpy(*(puntero+i), palabra, tamano+1);
+            *puntero[tamano+1] = '\0';
+        }
+
+    }
+
+    for(int i = 0; i < palabras; i++)
+        printf(" %s\n", *(puntero+i));
+
+    free(*puntero);
+    for(int i = 0; i < palabras; i++)
+        free(puntero+i);
+    return EXIT_SUCCESS;
 }
+
+
