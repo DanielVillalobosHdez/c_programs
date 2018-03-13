@@ -9,6 +9,7 @@ int main(){
     char palabra[N];
     int tamano;
     int palabras;
+    int contador = 0;
 
     printf("Cuantas palabras: ");
     scanf(" %i", &palabras);
@@ -16,26 +17,22 @@ int main(){
 
     for(int i = 0; i = palabras; i++){
         printf("palabra: ");
-        scanf(" %[^\n]", palabra);
+        scanf(" %s", &palabra[i]);
         tamano = strlen(palabra);
 
-        if(i = 0){
+        if(contador == 0){
 
             puntero = (char **) malloc(sizeof(char *));
-
-            *(puntero+i) = (char *) malloc ((tamano+1) * sizeof(char));
-            strncpy(*puntero, palabra, tamano+1);
-            *puntero[tamano+1] = '\0';
-            printf(" %s\n", *puntero);
-
-        } else {
-
-            puntero = (char **) realloc (puntero, (i+1)*sizeof(char *));
-            *(puntero+i) = (char *) malloc (tamano+1);
-            strncpy(*(puntero+i), palabra, tamano+1);
-            *puntero[tamano+1] = '\0';
+            *(puntero+i) = (char *) malloc((tamano+1) * sizeof(char));
+            strncpy(*puntero, palabra, tamano-1);
+            contador++;
         }
-
+        if (contador >= 1){
+            puntero = (char **) realloc (puntero, (i+1)*sizeof(char *));
+            *(puntero+i) = (char *) malloc (tamano+(i+1));
+            strncpy(*(puntero+i), palabra+i, tamano+(i+1));
+            contador++;
+        }
     }
 
     for(int i = 0; i < palabras; i++)
