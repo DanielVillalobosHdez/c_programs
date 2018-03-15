@@ -15,7 +15,7 @@ int main(){
     scanf(" %i", &palabras);
 
 
-    for(int i = 0; i = palabras; i++){
+    for(int i = 0; i < palabras; i++){
         printf("palabra: ");
         scanf(" %s", &palabra[i]);
         tamano = strlen(palabra);
@@ -38,9 +38,8 @@ int main(){
     for(int i = 0; i < palabras; i++)
         printf(" %s\n", *(puntero+i));
 
-    free(*puntero);
     for(int i = 0; i < palabras; i++)
-        free(puntero+i);
+        free(*(puntero+i));
     return EXIT_SUCCESS;
 }
 
