@@ -4,21 +4,22 @@
 
 #define N 100
 
+bool calcular(int priposible){
+    for (int d=2; d<priposible; d++)
+        if (priposible % d == 0)
+            return false;
+    return true;
+}
+
 int main(){
 
-	int matriz[N];
-	int primos;
+    int primos[N];
 
-	for(int i = 0; i < N; i++){
-		primos = i;
-		if((primos%i) == 0)
-			primos++;
-	if(primos==2)
-		matriz[i] = primos;
-	}
+    for (int primo=0, priposible=2; primo<N; priposible++){
+        if (calcular(priposible))
+            primos[primo++] = priposible;
+        printf(" %i\n", primos[primo++]);
+    }
 
-	for(int m = 0; m < N; m++)
-		printf(" %i", matriz[m]);
-
-  return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
