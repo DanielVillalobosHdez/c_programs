@@ -8,15 +8,43 @@
 #define P 50
 
 void pintar (int letras);
-char escribir(char letra);
-char seleccionar_palabra(char **puntero);
+void escribir();
+char *seleccionar_palabra(char **puntero);
 char comprobar(char letra, char puntero);
+void pintarletra(char letra, int letras);
+
+int vidas = 3;
+char *puntero;
+int letras;
+int contador = 0;
+
+void pintarletra(char letra){
+
+    int letras1;
+    letras1 =  strlen(puntero);
+    char letradicha[letras];
+
+    if(strchr(puntero, letra) != NULL){
+        printf(" %s", &letradicha[contador]);
+        letradicha[contador] = letra;
+        contador++;
+        escribir();
+    } else {
+        vidas--;
+        pintar(letras);
+    }
+}
+
 
 void pintar (int letras){
 
+    int contadorantes = 0;
+    int contadordespues = 0;
+    char dicha[letras];
+
     printf("\t\t\tAHORCADO\n");
 
-    for(int cor=0; cor<3; cor++)
+    for(int cor=0; cor<vidas; cor++)
         printf("\t vida %i \t", cor);
     printf("\n");
 
@@ -24,20 +52,56 @@ void pintar (int letras){
     for(int rep=0; rep<letras-1; rep++)
         printf("_ ");
     printf("\n");
+
+    escribir();
 }
 
-char escribir(char letra) {
+void escribir() {
+    char letra[N];
+
     printf("letra: ");
-    scanf(" %s", &letra);
+    scanf(" %s", &letra[contador]);
+
+    pintarletra(letra[contador]);
 }
 
-char seleccionar_palabra(char **puntero = NULL){
+
+//a=sel_pa(".facil.txt");
+
+char *sel_pa(const char *fichero)
+{
+    char *p_retorno;
+    FILE *archivo;
+    char elegida[N];
+    char definitiva;
+    int random = 0;
+
+    archivo = fopen(fichero,"rt");
+    while (fgets(elegida, N , archivo) !=NULL){
+        letras = strlen(elegida);
+        if(contador == 0){
+            //
+            p_
+        }
+        if(contador >= 1) {
+            //
+        }
+    }
+    fclose(archivo);
+    random = rand() %50;
+    letras = strlen(*puntero);
+    printf(" %s\n", *puntero);
+    pintar(letras);
+
+    return p_retorno;
+
+
+}
+
+char *seleccionar_palabra(char **puntero = NULL){
 
     FILE *archivo;
     char elegida[N];
-    int letras;
-    int ltr;
-    int contador = 0;
     char definitiva;
     int random = 0;
 
@@ -60,33 +124,21 @@ char seleccionar_palabra(char **puntero = NULL){
     }
     fclose(archivo);
     random = rand() %50;
-    ltr= strlen(*puntero);
-    pintar(ltr);
+    letras = strlen(*puntero);
+    printf(" %s\n", *puntero);
+    pintar(letras);
     free(puntero);
-    return **(puntero + random);
-}
-
-char comprobar (char letra, char puntero) {
-    char *buscar;
-    int vidas = 3;
-
-    buscar = strchr(&puntero, letra);
-
-    if(buscar == NULL)
-        pintar(vidas--);
-    pintar(*buscar);
-
+    return *(puntero + random);
 }
 
 int main(){
 
-    char **puntero;
-    char puntero1;
-    char letra;
+    //char **puntero;
 
-    seleccionar_palabra(puntero);
-    escribir(letra);
-    comprobar(letra, puntero1);
+    srand(time(NULL));
+    seleccionar_palabra(*puntero);
 
     return EXIT_SUCCESS;
 }
+
+
