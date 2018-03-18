@@ -7,12 +7,14 @@
 #define N 0x100
 #define P 10
 
-void palabra ();
+void f_palabra ();
 void pinta(int ltr);
 void pedir();
 bool comprobar (char letra);
 void pintar_muneco ();
 void ganador();
+void perdedor();
+void repeticiones();
 
 char *p_palabra = NULL;
 bool esta;
@@ -20,20 +22,20 @@ char letra;
 int contador = 0;
 int correctas = 0;
 int ltr;
+char palabra[N];
 
 int main(){
-	
+
 	system("clear");	
 
-	palabra();
+	f_palabra();
 	pedir();
 
 	return EXIT_SUCCESS;
 }
 
-void palabra() {
+void f_palabra() {
 
-	char palabra[N];
 
 	printf("palabra: ");
 	scanf(" %[^\n]", palabra);
@@ -55,6 +57,7 @@ void pinta (int ltr) {
 	printf("\n\n\n");
 
 	printf("La palabra tiene %i letras\n", ltr);
+	printf("*Las letras repetidas las tendras que poner tantas veces como se indique*\n");
 
 	printf("\t  ___ \n");
 	printf("\t |   | \n");
@@ -83,6 +86,7 @@ bool comprobar (char letra) {
 
 	if (encontrada != NULL) {
 		esta = true;
+		repeticiones();
 	} else {
 		esta = false;
 	}
@@ -92,13 +96,17 @@ bool comprobar (char letra) {
 
 void pintar_muneco () {
 
+	char com_pal[N];
+
 	if( esta == true){
-		printf("La letra %s esta en la palabra\n", &letra);
 		correctas++;
 		if(correctas == ltr){
-			printf("La palabra era %s\n", p_palabra);
-			sleep(3);			
-			ganador();
+			printf("Ya has dicho todas las letras cual es la palabra: ");
+			scanf(" %[^\n]", com_pal);
+			if(com_pal[N] == palabra[N])			
+				ganador();
+			else 
+				printf("ERROR: La palabra era: %s\n", p_palabra);
 		} else
 			pedir();
 	} else {
@@ -153,9 +161,7 @@ void pintar_muneco () {
 		printf("\t |  _|_  \n");
 		printf("\t_|_ \n");
 		printf("\n\n\n\t\t\tLa palabra era %s\n", p_palabra);
-		contador++;
-		sleep(3);
-		system("clear");
+		perdedor();
 	}
 
 
@@ -170,4 +176,30 @@ void ganador() {
 	printf("\n\n\n");
 	sleep(3);
 	system("clear");
+	exit(1);
 }
+
+void repeticiones () {
+
+	int contador1 = 0;
+	for(int c = 0; c < ltr; c++)
+		if(letra == palabra[c]){
+			contador1++;
+		}
+	if(contador1 !=0)
+		printf("%c x%d\n", letra, contador1);
+	pintar_muneco();
+
+}
+
+void perdedor() {
+	system("clear");
+	printf("\n\n\n");
+	printf("\t\t\t");
+	system("toilet --gay -fpagga YOU LOSE");
+	printf("\n\n\n");
+	sleep(3);
+	system("clear");
+	exit(1);
+}
+
