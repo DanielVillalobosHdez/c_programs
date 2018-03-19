@@ -37,6 +37,19 @@ int main(){
 }
 
 void f_palabra() {
+    /*
+       int random;
+       FILE *archivo;
+       archivo = fopen(".facil.txt", "rt");
+       srand(time(NULL));
+
+       random = rand() %50;
+
+       while(fgets(letra, random, archivo) != NULL) {
+       printf("%s\n", letra);
+       }
+       */
+
 
 
     printf("palabra: ");
@@ -71,36 +84,23 @@ void pinta (int ltr) {
 }
 
 void pedir () {
-    char letra1;
+/*    char letra1;
     int con_letra = 0;
-    char letra_dicha[N];
-    /*
-       int random;
+    char letra_dicha[N];*/
 
-       FILE *archivo;
-
-       archivo = fopen(".facil.txt", "rt");
-       srand(time(NULL));
-
-       random = rand() %50;
-
-       while(fgets(letra, random, archivo) != NULL) {
-       printf("%s\n", letra);
-       }
-       */
     printf("Palabra: ");
     scanf(" %[^\n]", &letra);
-/*    letra_dicha[con_letra] = letra;
-    con_letra++;
+    /*    letra_dicha[con_letra] = letra;
+          con_letra++;
 
-    for(int i = 0; i < ltr; i++)
-        if(letra_dicha[i] != letra) {
-            letradichas == true;
-            comprobar(letra);
-        }
-        else
-            printf("La letra %c ya esta dicha\n", letra1);
-*/
+          for(int i = 0; i < ltr; i++)
+          if(letra_dicha[i] != letra) {
+          letradichas == true;
+          comprobar(letra);
+          }
+          else
+          printf("La letra %c ya esta dicha\n", letra1);
+          */
     comprobar(letra);
 
 
@@ -221,10 +221,10 @@ void repeticiones () {
         }
     if(contador1 !=0){
         printf("%c x%d\n", letra, contador1);
-            if(ltr1 == 0)
-                ltr1 = ltr - contador1;
-            else
-                ltr1 = ltr1 - contador1;
+        if(ltr1 == 0)
+            ltr1 = ltr - contador1;
+        else
+            ltr1 = ltr1 - contador1;
         printf("Te quedan %i letras\n", ltr1);
     }
 
