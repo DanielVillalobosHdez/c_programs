@@ -69,8 +69,8 @@ void pinta (int ltr) {
 }
 
 void pedir () {
-
-/*    int random;
+/*
+	int random;
 
     FILE *archivo;
 
@@ -78,11 +78,11 @@ void pedir () {
     srand(time(NULL));
 
     random = rand() %50;
-
-    letra = fseek(archivo, random, 0);
-
-    printf("%s\n", letra);*/
-
+    
+    while(fgets(letra, random, archivo) != NULL) {
+       printf("%s\n", letra);
+    }
+*/
     printf("Palabra: ");
     scanf(" %[^\n]", &letra);
 
