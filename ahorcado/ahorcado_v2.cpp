@@ -37,18 +37,18 @@ int main(){
 }
 
 void f_palabra() {
-    /*
-       int random;
+    /*int random;
+       
        FILE *archivo;
        archivo = fopen(".facil.txt", "rt");
+       
        srand(time(NULL));
-
        random = rand() %50;
 
-       while(fgets(letra, random, archivo) != NULL) {
-       printf("%s\n", letra);
+       while(fgets(palabra, random, archivo) != NULL) {
+       printf("%s\n", palabra);
        }
-       */
+    */
 
 
 
