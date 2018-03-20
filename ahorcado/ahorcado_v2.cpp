@@ -7,6 +7,12 @@
 #define N 0x100
 #define P 10
 
+#ifndef NDEBUG
+#define DBG(msg)
+#else
+#define DBG(...) fprintf(stderr, __VA_ARGS__);
+#endif
+
 void f_palabra ();
 void pinta(int ltr);
 void pedir();
@@ -15,16 +21,20 @@ void pintar_muneco ();
 void ganador();
 void perdedor();
 void repeticiones();
+void decir();
 
-char *p_palabra = NULL;
+char **p_palabra = NULL;
+char *p_elegida = NULL;
 bool esta;
 char letra;
 int contador = 0;
+int contador1 = 0;
 int correctas = 0;
 int ltr;
 unsigned int ltr1;
 char palabra[N];
 bool letradichas = false;
+char elegida[N];
 
 int main(){
 
@@ -37,29 +47,31 @@ int main(){
 }
 
 void f_palabra() {
-    /*int random;
-       
-       FILE *archivo;
-       archivo = fopen(".facil.txt", "rt");
-       
-       srand(time(NULL));
-       random = rand() %50;
+    int random;
 
-       while(fgets(palabra, random, archivo) != NULL) {
-       printf("%s\n", palabra);
-       }
-    */
+    FILE *archivo;
+    archivo = fopen(".facil.txt", "rt");
+
+    srand(time(NULL));
+    random = rand() %(P-1);
+    while(fgets(palabra, N, archivo) != NULL) {
+
+        ltr = strlen(palabra);
+
+        p_palabra = (char **) realloc (p_palabra, (contador+1)*sizeof(char *));
+        *(p_palabra+contador) = (char *) malloc (ltr * sizeof(char));
+        strncpy(*(p_palabra+contador), palabra, ltr-1);
+        contador++;
+
+    }
+
+    ltr = strlen(*(p_palabra+random));
+    p_elegida = (char *) malloc (ltr  * sizeof (char));
+    strncpy(p_elegida, *(p_palabra+random), ltr);
 
 
-
-    printf("palabra: ");
-    scanf(" %[^\n]", palabra);
-
-    ltr = strlen(palabra);
-    p_palabra = (char *) malloc ((ltr + 1) * sizeof (char));
-    strncpy(p_palabra, palabra, ltr);
-
-
+    fclose(archivo);
+    free(p_palabra);
     pinta(ltr);
 
 }
@@ -72,7 +84,7 @@ void pinta (int ltr) {
     printf("\n\n\n");
 
     printf("La palabra tiene %i letras\n", ltr);
-    printf("*Las letras repetidas las tendras que poner tantas veces como se indique*\n");
+    /*printf("%s\n", p_elegida);*/
 
     printf("\t  ___ \n");
     printf("\t |   | \n");
@@ -84,23 +96,24 @@ void pinta (int ltr) {
 }
 
 void pedir () {
-/*    char letra1;
-    int con_letra = 0;
-    char letra_dicha[N];*/
+    /*
+       char letra1;
+       int con_letra = 0;
+       char letra_dicha[N];
+       */
 
-    printf("Palabra: ");
+    printf("letra: ");
     scanf(" %[^\n]", &letra);
-    /*    letra_dicha[con_letra] = letra;
-          con_letra++;
-
-          for(int i = 0; i < ltr; i++)
-          if(letra_dicha[i] != letra) {
-          letradichas == true;
-          comprobar(letra);
-          }
-          else
-          printf("La letra %c ya esta dicha\n", letra1);
-          */
+    /*
+       letra_dicha[con_letra] = letra;
+       con_letra++;
+       for(int i = 0; i < ltr; i++)
+       if(letra_dicha[i] != letra) {
+       letradichas == true;
+       comprobar(letra);
+       } else
+       printf("La letra %c ya esta dicha\n", letra1);
+       */
     comprobar(letra);
 
 
@@ -110,41 +123,20 @@ bool comprobar (char letra) {
 
     char *encontrada;
 
-    encontrada = strchr(p_palabra, letra);
+    encontrada = strchr(p_elegida, letra);
 
 
     if (encontrada != NULL) {
         esta = true;
         repeticiones();
-    } else {
-        esta = false;
-    }
+    }else
+        pintar_muneco();
 
-    pintar_muneco();
 }
 
 void pintar_muneco () {
 
-    char com_pal[N];
-
-    if( esta == true){
-        if(correctas == ltr){
-            printf("Ya has dicho todas las letras cual es la palabra: ");
-            scanf(" %[^\n]", com_pal);
-            for(int array1 = 0; array1 < ltr; array1++)
-                for(int array2 = 0; array2 < ltr; array2++)
-                    if(com_pal[array1] == palabra[array2])
-                        ganador();
-                    else{
-                        printf("ERROR: La palabra era: %s\n", p_palabra);
-                        perdedor();
-                    }
-        } else
-            pedir();
-    } else {
-        contador++;
-    }
-    if (contador == 1) {
+    if (contador1 == 0) {
         system("clear");
 
         printf("\t\t\t");
@@ -159,9 +151,10 @@ void pintar_muneco () {
         printf("\t | \n");
         printf("\t | \n");
         printf("\t_|_ \n");
+        contador1++;
         pedir();
     }
-    if (contador == 2) {
+    if (contador1 == 1) {
         system("clear");
 
 
@@ -176,9 +169,10 @@ void pintar_muneco () {
         printf("\t |   |\n");
         printf("\t | \n");
         printf("\t_|_ \n");
+        contador1++;
         pedir();
     }
-    if (contador == 3) {
+    if (contador1 == 2) {
         system("clear");
 
         printf("\t\t\t");
@@ -192,7 +186,8 @@ void pintar_muneco () {
         printf("\t |  -|- \n ");
         printf("\t |  _|_  \n");
         printf("\t_|_ \n");
-        printf("\n\n\n\t\t\tLa palabra era %s\n", p_palabra);
+        printf("\n\n\n\t\t\tLa palabra era %s\n", p_elegida);
+        sleep(3);
         perdedor();
     }
 
@@ -216,7 +211,7 @@ void repeticiones () {
     int contador1 = 0;
 
     for(int c = 0; c < ltr; c++)
-        if(letra == palabra[c]){
+        if(letra == *(p_elegida+c)){
             contador1++;
         }
     if(contador1 !=0){
@@ -231,7 +226,7 @@ void repeticiones () {
     if(ltr1 == 0)
         correctas = ltr;
 
-    pintar_muneco();
+    decir();
 
 }
 
@@ -246,3 +241,24 @@ void perdedor() {
     exit(1);
 }
 
+void decir() {
+    char com_pal[N];
+
+    if(esta == true){
+        if(correctas == ltr){
+            printf("Ya has dicho todas las letras cual es la palabra: ");
+            scanf(" %[^\n]", com_pal);
+            for(int array1 = 0; array1 < ltr; array1++)
+                for(int array2 = 0; array2 < ltr; array2++)
+                    if(com_pal[array1] == *p_elegida)
+                        ganador();
+                    else{
+                        printf("ERROR: La palabra era: %s\n", *p_palabra);
+                        sleep(3);
+                        perdedor();
+                    }
+        }
+            pedir();
+
+    }
+}
