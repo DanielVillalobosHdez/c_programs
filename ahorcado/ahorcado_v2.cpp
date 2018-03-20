@@ -172,7 +172,79 @@ void pintar_muneco () {
         contador1++;
         pedir();
     }
+
     if (contador1 == 2) {
+        system("clear");
+
+        printf("\t\t\t");
+        system("toilet --gay -fpagga AHORCADO");
+        printf("\n\n\n");
+
+        printf("La palabra tiene %i letras\n", ltr);
+        printf("\t  ___ \n");
+        printf("\t |   | \n");
+        printf("\t |   o \n");
+        printf("\t |   | \n ");
+        printf("\t |   |  \n");
+        printf("\t_|_ \n");
+        contador1++;
+        pedir();
+    }
+
+    if (contador1 == 3) {
+        system("clear");
+
+        printf("\t\t\t");
+        system("toilet --gay -fpagga AHORCADO");
+        printf("\n\n\n");
+
+        printf("La palabra tiene %i letras\n", ltr);
+        printf("\t  ___ \n");
+        printf("\t |   | \n");
+        printf("\t |   o \n");
+        printf("\t |  -| \n ");
+        printf("\t |   |  \n");
+        printf("\t_|_ \n");
+        contador1++;
+        pedir();
+    }
+    if (contador1 == 4) {
+        system("clear");
+
+        printf("\t\t\t");
+        system("toilet --gay -fpagga AHORCADO");
+        printf("\n\n\n");
+
+        printf("La palabra tiene %i letras\n", ltr);
+        printf("\t  ___ \n");
+        printf("\t |   | \n");
+        printf("\t |   o \n");
+        printf("\t |  -|- \n ");
+        printf("\t |   |  \n");
+        printf("\t_|_ \n");
+        contador1++;
+        pedir();
+    }
+    if (contador1 == 5) {
+        system("clear");
+
+        printf("\t\t\t");
+        system("toilet --gay -fpagga AHORCADO");
+        printf("\n\n\n");
+
+        printf("La palabra tiene %i letras\n", ltr);
+        printf("\t  ___ \n");
+        printf("\t |   | \n");
+        printf("\t |   o \n");
+        printf("\t |  -|- \n ");
+        printf("\t |  _|  \n");
+        printf("\t_|_ \n");
+        contador1++;
+        pedir();
+    }
+
+
+    if (contador1 == 6) {
         system("clear");
 
         printf("\t\t\t");
@@ -258,7 +330,7 @@ void decir() {
                         perdedor();
                     }
         }
-            pedir();
+        pedir();
 
     }
 }
