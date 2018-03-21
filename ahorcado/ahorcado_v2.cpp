@@ -22,6 +22,7 @@ void ganador();
 void perdedor();
 void repeticiones();
 void decir();
+void menu();
 
 char **p_palabra = NULL;
 char *p_elegida = NULL;
@@ -39,6 +40,12 @@ char elegida[N];
 int main(){
 
     system("clear");
+    printf("\n\n\n\n\n\n\n\n\t\t\t\t\t\t\t\t");
+    system("toilet --gay -fpagga --filter border -w 600 'Ahorcado'");
+    printf("CREADO POR:\n\t\t\t\t\t\t\t\tDANIEL VILLALOBOS");
+    printf("\n\t\t\t\t\t\t\t\t21/03/2018");
+    sleep(5);
+    system("clear");
 
     f_palabra();
     pedir();
@@ -47,6 +54,7 @@ int main(){
 }
 
 void f_palabra() {
+
     int random;
 
     FILE *archivo;
@@ -71,13 +79,19 @@ void f_palabra() {
 
 
     fclose(archivo);
-    free(p_palabra);
     pinta(ltr);
 
 }
 
 void pinta (int ltr) {
+
     system("clear");
+
+    time_t tiempo = time(0);
+    struct tm *tlocal = localtime(&tiempo);
+    char output[128];
+    strftime(output,128,"%d/%m/%y %H:%M:%S",tlocal);
+    printf("%s\n",output);
 
     printf("\t\t\t");
     system("toilet --gay -fpagga AHORCADO");
@@ -275,7 +289,9 @@ void ganador() {
     printf("\n\n\n");
     sleep(3);
     system("clear");
-    exit(1);
+    free(p_palabra);
+    free(p_elegida);
+    menu();
 }
 
 void repeticiones () {
@@ -310,7 +326,9 @@ void perdedor() {
     printf("\n\n\n");
     sleep(3);
     system("clear");
-    exit(1);
+    free(p_palabra);
+    free(p_elegida);
+    menu();
 }
 
 void decir() {
@@ -333,4 +351,25 @@ void decir() {
         pedir();
 
     }
+}
+
+void menu(){
+
+    int opcion;
+
+    system("clear");
+
+    printf("\n");
+    printf("\t1) Nueva palabra\n\t2) SALIR\n\tOpcion: ");
+    scanf(" %i", &opcion);
+
+    if(opcion == 1)
+        main();
+    if(opcion == 2)
+        system("clear");
+    exit(1);
+    if(opcion != 1 || opcion != 2)
+        menu();
+
+    system("clear");
 }
