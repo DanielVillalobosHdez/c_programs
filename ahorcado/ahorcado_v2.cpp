@@ -5,7 +5,7 @@
 #include <time.h>
 
 #define N 0x100
-#define P 10
+#define P 50
 
 #ifndef NDEBUG
 #define DBG(msg)
@@ -44,6 +44,7 @@ int main(){
     system("toilet --gay -fpagga --filter border -w 600 'Ahorcado'");
     printf("CREADO POR:\n\t\t\t\t\t\t\t\tDANIEL VILLALOBOS");
     printf("\n\t\t\t\t\t\t\t\t21/03/2018");
+    printf("\n");
     sleep(5);
     system("clear");
 
@@ -91,7 +92,7 @@ void pinta (int ltr) {
     struct tm *tlocal = localtime(&tiempo);
     char output[128];
     strftime(output,128,"%d/%m/%y %H:%M:%S",tlocal);
-    printf("%s\n",output);
+    printf("\t\t\t\t\t\t%s\n",output);
 
     printf("\t\t\t");
     system("toilet --gay -fpagga AHORCADO");
