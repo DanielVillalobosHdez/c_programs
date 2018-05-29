@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 
-char imprimir(char frase[], int entero){
+void imprimir(char frase[], int entero){
     char letra = frase[entero];
 
     printf("%c", letra);

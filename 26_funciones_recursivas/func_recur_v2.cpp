@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <strings.h>
 
-char imprimir(char frase[], int entero){
+void imprimir(char frase[], int entero){
     char letra = frase[entero];
 
     printf("%c", letra);
@@ -11,7 +11,7 @@ char imprimir(char frase[], int entero){
         imprimir(frase, entero);
 }
 
-char imprimirinversa(char frase[], int entero){
+void imprimirinversa(char frase[], int entero){
     char letra = frase[entero-1];
 
     printf("%c", letra);
